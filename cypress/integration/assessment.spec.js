@@ -45,7 +45,7 @@ context('Cypress technical exam - way2automation.com', () => {
 
         cy.wrap(null).then(() => {
             // handling async commands
-            // # Step 2
+            // Step #2
             console.log(categories)
             Cypress.log({
                 displayName: "List of categories",
@@ -116,7 +116,7 @@ context('Cypress technical exam - way2automation.com', () => {
         // Step #11
         seleniumTutorialsPage.scrollToCurrentCurriculum()
         // Step #12
-        seleniumTutorialsPage.startCurrentCurriculum()
+        seleniumTutorialsPage.clickStartCurrentCurriculum()
 
         // wait for leacure content to load
         // Step #13
@@ -133,11 +133,10 @@ context('Cypress technical exam - way2automation.com', () => {
         // Step #16
         // verify value equal to 29
         seleniumTutorialsPage.payInUsdPriceShouldBe('$29')
-
-        // Step #17
-        // click enroll
         seleniumTutorialsPage.enrollButtonTextShouldBe('Enroll in Course')
-        // Step #18
+
+        // Step #17 and #18
+        // click enroll course and verify that button text changed
         seleniumTutorialsPage.clickEnrollButtonAndTextShouldBe('Processing...')
     })
 })
