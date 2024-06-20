@@ -43,3 +43,11 @@ Cypress.Commands.add('Select', (selector, value, options) => {
         cy.get(selector).select(value, options)
     }
 })
+
+Cypress.Commands.add('IsVisible', (selector, callback) => {
+    cy.get(selector).then(
+        $elem => callback(
+            $elem.is(':visible')
+        )
+    )
+})
