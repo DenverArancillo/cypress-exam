@@ -47,7 +47,7 @@ class SeleniumTutorialsPage {
         })
     }
 
-    startCurrentCurriculum() {
+    clickStartCurrentCurriculum() {
         this.getCurrentCurriculumMapping().then(mapping => {
             cy.get(`${mapping} div`).click()
         })
