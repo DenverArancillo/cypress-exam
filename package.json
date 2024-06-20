@@ -3,6 +3,8 @@
     "cypress": "^9.7.0"
   },
   "scripts": {
-    "open": "npx cypress open"
+    "open": "npx cypress open",
+    "test-headless": "npx cypress run -b chrome --headless -s ./cypress/integration/assessment.spec.js",
+    "test-headed": "npx cypress run -b chrome --headed -s ./cypress/integration/assessment.spec.js"
   }
 }
