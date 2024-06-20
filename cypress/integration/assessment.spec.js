@@ -4,6 +4,8 @@ import globalData from '../fixtures/globalData.json'
 import DemoPage from '../pages/way2automation/DemoPage'
 import DummyRegistrationPage from '../pages/way2automation/DummyRegistrationPage'
 import LifeTimeMembershipPage from '../pages/way2automation/LifeTimeMembershipPage'
+import SeleniumTutorialsPage from '../pages/selenium-tutorials/SeleniumTutorialsPage'
+import LecturePage from '../pages/selenium-tutorials/LecturePage'
 
 context('Cypress technical exam - way2automation.com', () => {
     before(() => {
@@ -92,49 +94,50 @@ context('Cypress technical exam - way2automation.com', () => {
     })
     
     it('Automation Architect in Selenium - 7 Live Projects', () => {
-        
-        cy.get('body').then($body => {
-            console.log('find', $body.find('a[data-ss-lecture-id="5575689"]').length)
-        })
-        cy.get('a[data-ss-lecture-id="5575689"]').then($item => {
-            console.log('visible', $item.is(':visible'))
+        const seleniumTutorialsPage = new SeleniumTutorialsPage()
+        const lecturePage = new LecturePage()
+
+        // find curriculum and save lecture id
+        seleniumTutorialsPage.findLectureId('CucumberParallelWithPageObjects - Project Code')
+
+        // check first if lecture is visible
+        seleniumTutorialsPage.isCurrentCurriculumVisible().then(isVisible => {
+            if (!isVisible) {
+                // click expand if not visible
+                seleniumTutorialsPage.clickExpandCurriculumBtn()
+            }
         })
 
-        // check first if lecture is found
+        // verify that current curriculum is visible
+        seleniumTutorialsPage.isCurrentCurriculumVisible().then(isVisible => {
+            expect(isVisible).to.be.true
+        })
 
-        // click expand
-        cy.get('#more_lecture_sections').click()
         // Step #11
-        cy.get('a[data-ss-lecture-id="5575689"] div').scrollIntoView()
-
-        // click start
+        seleniumTutorialsPage.scrollToCurrentCurriculum()
         // Step #12
-        cy.get('a[data-ss-lecture-id="5575689"] div').click()
+        seleniumTutorialsPage.startCurrentCurriculum()
 
         // wait for leacure content to load
         // Step #13
-        cy.get('#lecture_heading', { timeout: 60000 }).should('be.visible')
+        lecturePage.waitForLecturePageToLoad()
 
         // return back to course page
         // Step #14
-        cy.get('a.nav-icon-back').click()
+        lecturePage.clickHomeIcon()
 
         // Step #15
         // pay in usd
-        cy.get('label.product_4632690').click({ scrollBehavior: 'center' })
+        seleniumTutorialsPage.clickPayInUsd()
 
         // Step #16
         // verify value equal to 29
-        cy.get('label.product_4632690 span.default-product-price').should('have.text', '$29')
+        seleniumTutorialsPage.payInUsdPriceShouldBe('$29')
 
         // Step #17
         // click enroll
-        cy.get('#enroll-button')
-            .then($btn => {
-                expect($btn.text().trim()).to.be.eq('Enroll in Course')
-            })
-            .click()
-            // Step #18
-            .should('have.text', 'Processing...')
+        seleniumTutorialsPage.enrollButtonTextShouldBe('Enroll in Course')
+        // Step #18
+        seleniumTutorialsPage.clickEnrollButtonAndTextShouldBe('Processing...')
     })
 })
