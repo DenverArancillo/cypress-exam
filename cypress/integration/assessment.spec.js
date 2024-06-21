@@ -7,7 +7,7 @@ import LifeTimeMembershipPage from '../pages/way2automation/LifeTimeMembershipPa
 import SeleniumTutorialsPage from '../pages/selenium-tutorials/SeleniumTutorialsPage'
 import LecturePage from '../pages/selenium-tutorials/LecturePage'
 
-context('Cypress technical exam - way2automation.com', () => {
+context('Cypress technical exam', () => {
     before(() => {
         // Step #1
         cy.visit('https://www.way2automation.com/demo.html')
