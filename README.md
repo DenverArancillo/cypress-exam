@@ -7,7 +7,7 @@ Objective : To create an automated test using Cypress and Mocha test framework t
 
 #### Prerequisites
 
-This project requires Node version v16.14 to run
+This project requires Node version v16.14
 
 
 
