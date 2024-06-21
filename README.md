@@ -29,7 +29,7 @@ This project is developed using the following
 
 ## Tests
 
-Run the following commands to start automated Tests
+Run the following commands to start automated tests
 
 - `npm run open` - Open UI mode
 - `npm run test-headless` - Run automation exam on headless browser
